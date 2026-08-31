@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hamburgueria do Tiaguinho | O Sabor que Você Ama</title>
+
+<!-- FONTES -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --fundo-claro: #FFFDF9;
+  --fundo-card: #FFFFFF;
+  --destaque: #E63946;
+  --destaque-hover: #D62828;
+  --secundaria: #FF9F1C;
+  --texto-escuro: #2B2B2B;
+  --texto-suave: #666666;
+  --borda: #F0E6D8;
+  --sombra: 0 10px 40px rgba(0, 0, 0, 0.08);
+  --fonte-titulo: 'Playfair Display', serif;
+  --fonte-texto: 'Poppins', sans-serif;
+}
+
+body {
+  font-family: var(--fonte-texto);
+  color: var(--texto-escuro);
+  line-height: 1.6;
+  background: var(--fundo-claro);
+}
+
+/* ==========================================
+   🍔 HERO — FUNDO COM HAMBÚRGUER
+   ========================================== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  padding: 40px 20px;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 253, 249, 0.92), rgba(255, 245, 230, 0.88)),
+              url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1200&q=80') center/cover no-repeat;
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 10px 24px;
+  background: rgba(230, 57, 71, 0.08);
+  color: var(--destaque);
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 28px;
+  border: 1px solid rgba(230, 57, 71, 0.2);
+}
+
+.hero h1 {
+  font-family: var(--fonte-titulo);
+  font-size: clamp(42px, 8vw, 72px);
+  line-height: 1.1;
+  margin-bottom: 24px;
+  color: var(--texto-escuro);
+}
+
+.hero h1 span {
+  color: var(--destaque);
+}
+
+.hero p {
+  font-size: 20px;
+  color: var(--texto-suave);
+  margin-bottom: 40px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  padding: 18px 42px;
+  background: var(--destaque);
+  color: white;
+  border-radius: 50px;
+  font-size: 17px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 8px 25px rgba(230, 57, 71, 0.3);
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.btn-primary:hover {
+  background: var(--destaque-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(230, 57, 71, 0.35);
+}
+
+.btn-secondary {
+  padding: 18px 42px;
+  background: transparent;
+  color: var(--texto-escuro);
+  border: 2px solid var(--texto-escuro);
+  border-radius: 50px;
+  font-size: 17px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: var(--texto-escuro);
+  color: white;
+  transform: translateY(-3px);
+}
+
+/* ==========================================
+   📖 SEÇÃO PADRÃO
+   ========================================== */
+section {
+  padding: 100px 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-header small {
+  color: var(--destaque);
+  font-weight: 600;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.section-header h2 {
+  font-family: var(--fonte-titulo);
+  font-size: clamp(34px, 5vw, 48px);
+  margin-top: 12px;
+  color: var(--texto-escuro);
+}
+
+.section-header p {
+  color: var(--texto-suave);
+  max-width: 550px;
+  margin: 16px auto 0;
+  font-size: 17px;
+}
+
+/* ==========================================
+   🍔 CARDÁPIO
+   ========================================== */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+@media (max-width: 900px) {
+  .menu-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 580px) {
+  .menu-grid { grid-template-columns: 1fr; }
+}
+
+.menu-card {
+  background: var(--fundo-card);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--sombra);
+  transition: all 0.35s ease;
+  border: 1px solid var(--borda);
+}
+
+.menu-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+}
+
+.menu-img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+}
+
+.menu-content {
+  padding: 24px;
+}
+
+.menu-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.menu-top h3 {
+  font-family: var(--fonte-titulo);
+  font-size: 22px;
+  color: var(--texto-escuro);
+  text-align: center;
+}
+
+.menu-content p {
+  color: var(--texto-suave);
+  font-size: 15px;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.menu-btn {
+  width: 100%;
+  padding: 14px;
+  background: rgba(230, 57, 71, 0.08);
+  color: var(--destaque);
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.menu-btn:hover {
+  background: var(--destaque);
+  color: white;
+}
+
+/* ==========================================
+   📸 GALERIA — REMOVIDA
+   ========================================== */
+
+/* ==========================================
+   📍 SOBRE / DESTAQUES
+   ========================================== */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+@media (max-width: 850px) {
+  .about-grid { grid-template-columns: 1fr; }
+}
+
+.about-img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 24px;
+  box-shadow: var(--sombra);
+}
+
+.about-text h3 {
+  font-family: var(--fonte-titulo);
+  font-size: 36px;
+  margin-bottom: 24px;
+  color: var(--texto-escuro);
+}
+
+.about-text p {
+  color: var(--texto-suave);
+  font-size: 17px;
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+
+.features-list {
+  list-style: none;
+}
+
+.features-list li {
+  padding: 10px 0;
+  color: var(--texto-escuro);
+  font-weight: 500;
+}
+
+.features-list li::before {
+  content: "✓";
+  color: var(--destaque);
+  font-weight: bold;
+  margin-right: 12px;
+  font-size: 20px;
+}
+
+/* ==========================================
+   📞 PEDIDO / CONTATO
+   ========================================== */
+.cta {
+  background: linear-gradient(135deg, #FFF5EB, #FFFDF9);
+  text-align: center;
+  border-radius: 32px;
+  margin: 0 20px;
+  box-shadow: inset 0 0 0 1px rgba(230, 57, 71, 0.08);
+}
+
+.cta h2 {
+  font-family: var(--fonte-titulo);
+  font-size: clamp(32px, 5vw, 48px);
+  margin-bottom: 16px;
+  color: var(--texto-escuro);
+}
+
+.cta p {
+  font-size: 18px;
+  color: var(--texto-suave);
+  max-width: 550px;
+  margin: 0 auto 35px;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-whatsapp {
+  background: #25D366;
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+}
+
+.btn-whatsapp:hover {
+  background: #20BA5A;
+  box-shadow: 0 12px 35px rgba(37, 211, 102, 0.35);
+}
+
+/* ==========================================
+   🦶 RODAPÉ
+   ========================================== */
+footer {
+  background: #2B2B2B;
+  color: #E0E0E0;
+  padding: 60px 20px 30px;
+  text-align: center;
+}
+
+footer p {
+  margin-bottom: 10px;
+  opacity: 0.8;
+}
+
+footer a {
+  color: #FF9F1C;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer-info {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin: 30px 0;
+}
+
+.footer-col h4 {
+  color: white;
+  margin-bottom: 12px;
+  font-size: 17px;
+}
+
+.footer-col p {
+  font-size: 15px;
+}
+
+.copyright {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 14px;
+  opacity: 0.5;
+}
+</style>
+</head>
+<body>
+
+<!-- 🍔 HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">🍔 Artesanal & Saboroso</div>
+    <h1>Hamburgueria do <span>Tiaguinho</span></h1>
+    <p>O melhor hambúrguer da região, feito com ingredientes selecionados, carne suculenta e aquele sabor que só o Tiaguinho sabe fazer!</p>
+    <div class="hero-buttons">
+      <a href="#cardapio" class="btn-primary">Ver Cardápio 📋</a>
+      <a href="#pedido" class="btn-secondary">Pedir Agora 📲</a>
+    </div>
+  </div>
+</section>
+
+<!-- 📖 CARDÁPIO -->
+<section id="cardapio">
+  <div class="container">
+    <div class="section-header">
+      <small>Nosso Cardápio</small>
+      <h2>Escolha o seu favorito</h2>
+      <p>Cada hambúrguer é preparado na hora, com carinho e ingredientes frescos.</p>
+    </div>
+    <div class="menu-grid">
+      
+      <div class="menu-card">
+        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&q=80" alt="Clássico" class="menu-img">
+        <div class="menu-content">
+          <div class="menu-top">
+            <h3>🍔 Clássico do Tiaguinho</h3>
+          </div>
+          <p>Pão brioche, carne suculenta, queijo, alface, tomate e molho especial da casa.</p>
+          <button class="menu-btn">Pedir agora 🛒</button>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=500&q=80" alt="Bacon" class="menu-img">
+        <div class="menu-content">
+          <div class="menu-top">
+            <h3>🥓 Duplo Bacon</h3>
+          </div>
+          <p>Dois hambúrgueres, queijo, bacon crocante, cebola caramelizada e molho barbecue.</p>
+          <button class="menu-btn">Pedir agora 🛒</button>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="https://images.unsplash.com/photo-1594210412039-819a984848d0?w=500&q=80" alt="Picante" class="menu-img">
+        <div class="menu-content">
+          <div class="menu-top">
+            <h3>🌶️ Picante</h3>
+          </div>
+          <p>Carne artesanal, queijo, pimentão, molho picante e pão com gergelim. Para os mais corajosos!</p>
+          <button class="menu-btn">Pedir agora 🛒</button>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?w=500&q=80" alt="Cheddar" class="menu-img">
+        <div class="menu-content">
+          <div class="menu-top">
+            <h3>🧀 Rei do Cheddar</h3>
+          </div>
+          <p>Carne suculenta, muito cheddar cremoso, bacon, cebola crispy e pão tostado na manteiga.</p>
+          <button class="menu-btn">Pedir agora 🛒</button>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="https://images.unsplash.com/photo-1606755962773-d523a0c0a56c?w=500&q=80" alt="Especial" class="menu-img">
+        <div class="menu-content">
+          <div class="menu-top">
+            <h3>⭐ Especial da Casa</h3>
+          </div>
+          <p>Carne premium, queijo especial, rúcula e molho secreto. O carro-chefe do Tiaguinho!</p>
+          <button class="menu-btn">Pedir agora 🛒</button>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="https://images.unsplash.com/photo-1586190848861-99aa4a176490?w=500&q=80" alt="Kids" class="menu-img">
+        <div class="menu-content">
+          <div class="menu-top">
+            <h3>👦 Kids Burger</h3>
+          </div>
+          <p>Hambúrguer menor, queijo, ketchup e batata frita. Perfeito para os pequenos!</p>
+          <button class="menu-btn">Pedir agora 🛒</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 📍 SOBRE -->
+<section>
+  <div class="container about-grid">
+    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80" alt="Nossa Cozinha" class="about-img">
+    <div class="about-text">
+      <h3>Feito com <span style="color:var(--destaque)">paixão</span> e ingredientes de qualidade</h3>
+      <p>Na Hamburgueria do Tiaguinho, cada hambúrguer é preparado na hora. Usamos apenas carnes selecionadas, pães frescos e ingredientes de primeira qualidade. Não economizamos no sabor — porque você merece o melhor!</p>
+      <ul class="features-list">
+        <li>✅ Carne 100% bovina, sem conservantes</li>
+        <li>✅ Pão fresco, preparado diariamente</li>
+        <li>✅ Ingredientes frescos e selecionados</li>
+        <li>✅ Preparado na hora, sempre quentinho</li>
+        <li>✅ Entrega rápida e embalagem térmica</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 📞 PEDIDO -->
+<section class="cta" id="pedido">
+  <div class="container">
+    <h2>Quer provar o melhor hambúrguer da região? 🍔</h2>
+    <p>Faça seu pedido pelo WhatsApp e receba no conforto da sua casa. Preparamos tudo na hora pra chegar quentinho até você!</p>
+    <div class="cta-buttons">
+      <a href="https://wa.me/5512981099055" target="_blank" class="btn-primary btn-whatsapp">Pedir pelo WhatsApp 📲</a>
+    </div>
+  </div>
+</section>
+
+<!-- 🦶 RODAPÉ -->
+<footer>
+  <p><strong style="font-size:22px;">🍔 Hamburgueria do Tiaguinho</strong></p>
+  <p>O sabor que você ama, feito com carinho!</p>
+  
+  <div class="footer-info">
+    <div class="footer-col">
+      <h4>⏰ Horário</h4>
+      <p>Segunda a Sexta: 18h às 23h</p>
+      <p>Sábado e Domingo: 12h às 23h</p>
+    </div>
+    <div class="footer-col">
+      <h4>📲 Contato</h4>
+      <p><a href="https://wa.me/5512981099055" target="_blank">+55 12 98109-9055</a></p>
+    </div>
+    <div class="footer-col">
+      <h4>📍 Endereço</h4>
+      <p>Av. Principal, 123 — Centro</p>
+      <p>Caraguatatuba — SP</p>
+    </div>
+  </div>
+
+  <p class="copyright">© 2026 Hamburgueria do Tiaguinho — Todos os direitos reservados.</p>
+</footer>
+
+</body>
+</html>
